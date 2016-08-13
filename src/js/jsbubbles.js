@@ -60,7 +60,7 @@ function JSBubbles(params){
   var renderParams = function( params ){
     //alert(params.toSource());
     for (bubble in params){
-      $( ".bubbles" ).append( "<div id='bubble"+bubble+"' class='bubble "+params[bubble].img+"'></div>" );
+      $( ".bubbles" ).append( "<a href='"+params[bubble].url+"'><div id='bubble"+bubble+"' class='bubble "+params[bubble].img+"'></div></a>" );
       $('#bubble'+bubble).css("background-color", params[bubble].color); //font-family: 'FontAwesome'
       $('#bubble'+bubble).css("font-family",'FontAwesome');
 
