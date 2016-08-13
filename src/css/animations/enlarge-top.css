@@ -1,0 +1,15 @@
+@keyframes enlargetop {
+  0% {
+  	height: 60px;
+  }
+  50% {
+    height: 120px;
+  }
+  100%{
+    height: 60px;
+  }
+}
+
+.animation-enlarge-top{
+  animation-name: enlargetop;
+}

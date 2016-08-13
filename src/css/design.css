@@ -1,0 +1,41 @@
+html,body{
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+.js-bubbles {
+  position:relative;
+  width: 100%;
+  height: 100%;
+}
+
+.js-bubbles .bubbles {
+  display: flex;
+  flex-direction: row;
+  position:absolute;
+
+  bottom:0;
+  right:0;
+
+  padding: 20px;
+}
+
+.js-bubbles .bubbles .bubble {
+  margin: 5px;
+
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+
+align-self: flex-end;
+
+  border-radius: 60px;
+  width: 60px;
+  height: 60px;
+  font-size: 40px;
+  color: rgb(255, 255, 255);
+  background-color: rgb(255, 0, 0);
+
+}

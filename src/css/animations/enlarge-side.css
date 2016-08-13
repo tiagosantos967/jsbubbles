@@ -1,0 +1,15 @@
+@keyframes enlargeside {
+  0% {
+  	width: 60px;
+  }
+  50% {
+    width: 120px;
+  }
+  100%{
+    width: 60px;
+  }
+}
+
+.animation-enlarge-side{
+  animation-name: enlargeside;
+}

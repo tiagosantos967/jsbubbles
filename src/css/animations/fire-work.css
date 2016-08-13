@@ -1,0 +1,8 @@
+@keyframes firework {
+
+}
+
+.animation-firework{
+  animation-name: firework;
+  animation-duration: 1.5s;
+}
