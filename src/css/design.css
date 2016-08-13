@@ -24,6 +24,9 @@ html,body{
 .js-bubbles .bubbles a{
   color: inherit;
   text-decoration: none;
+
+  display: flex;
+  align-self: flex-end;
 }
 
 .js-bubbles .bubbles .bubble {
@@ -33,8 +36,6 @@ html,body{
   justify-content: center;
   flex-direction: column;
   text-align: center;
-
-  align-self: flex-end;
 
   border-radius: 60px;
   width: 60px;
