@@ -13,3 +13,16 @@
 .animation-enlarge-top{
   animation-name: enlargetop;
 }
+
+
+.transition-enlarge-top{
+  height: 60px;
+  -webkit-transition-property: height; /* Safari */
+  -webkit-transition-duration: 0.5s; /* Safari */
+  transition-property: height;
+  transition-duration: 0.5s;
+}
+
+.transition-enlarge-top:hover{
+  height: 120px;
+}

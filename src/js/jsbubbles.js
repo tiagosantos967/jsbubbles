@@ -1,7 +1,8 @@
 
-function JSBubbles(params){
+function JSBubbles(params, animations){
   console.log('Loading JSBubbles...');
   this.params = params;
+  this.animations= animations;
 
   //TODO: add linkedin
   var common_params = {
@@ -46,34 +47,41 @@ function JSBubbles(params){
     return bubbles;
   };
 
-  var startAnimation = function(id,animation_name,time){
-    $(id).addClass(animation_name);
-    if(time != -1){
-      $(id).css("animation-duration",(time/1000)+'s');
-      setTimeout(function() {
-        $(id).removeClass(animation_name);
-      }, time);
-    }
+  var startAnimation = function(id , animation_name , time , delay ){
+    setTimeout(function() {
+      $(id).addClass(animation_name);
+      if(time != -1){
+        $(id).css("animation-duration",(time/1000)+'s');
+        setTimeout(function() {
+          $(id).removeClass(animation_name);
+        }, time);
+      }
+    }, delay);
   }
 
   //render complete parameters inside bubbles DIV
-  var renderParams = function( params ){
-    //alert(params.toSource());
+  var renderParams = function( params, animations ){
+
+    var delay = typeof animations.start.delay !== 'undefined'? animations.start.delay : 0;
+    var delayed = 0;
+    
     for (bubble in params){
       $( ".bubbles" ).append( "<a href='"+params[bubble].url+"'><div id='bubble"+bubble+"' class='bubble "+params[bubble].img+"'></div></a>" );
       $('#bubble'+bubble).css("background-color", params[bubble].color); //font-family: 'FontAwesome'
       $('#bubble'+bubble).css("font-family",'FontAwesome');
 
-      //TODO: add delay to the sequence?
       //register start animation here
-      startAnimation('#bubble'+bubble,'animation-bounce',1500);
-
-      startAnimation('#bubble'+bubble,'transition-enlarge-top',-1);
+      startAnimation('#bubble'+bubble,animations.start.name,animations.start.time, delayed+=delay );
 
       //register hover animation
-      /*$('#bubble'+bubble).bind('mouseenter', bubble ,function(data) {
-        startAnimation('#bubble'+data.data,'animation-enlarge-top',2000);
-      });*/
+      if(~animations.hover.name.indexOf('transition')){
+        startAnimation('#bubble'+bubble,animations.hover.name,-1,0);
+      } else {
+        $('#bubble'+bubble).bind('mouseenter', {bubble: bubble, animations: animations} ,function(event) {
+          var data = event.data;
+          startAnimation('#bubble'+data.bubble,data.animations.hover.name,data.animations.hover.time,0);
+        });
+      }
     }
   };
 
@@ -82,7 +90,7 @@ function JSBubbles(params){
     console.log('JSBubbles loaded!');
 
     //complete given params and send them for rendering
-    renderParams(readParams( this.params ));
+    renderParams(readParams( this.params ), this.animations);
   }.bind(this));
 
   //add notification bubble
