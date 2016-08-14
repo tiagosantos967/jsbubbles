@@ -68,10 +68,12 @@ function JSBubbles(params){
       //register start animation here
       startAnimation('#bubble'+bubble,'animation-bounce',1500);
 
+      startAnimation('#bubble'+bubble,'transition-enlarge-top',-1);
+
       //register hover animation
-      $('#bubble'+bubble).bind('mouseenter', bubble ,function(data) {
+      /*$('#bubble'+bubble).bind('mouseenter', bubble ,function(data) {
         startAnimation('#bubble'+data.data,'animation-enlarge-top',2000);
-      });
+      });*/
     }
   };
 
@@ -82,5 +84,17 @@ function JSBubbles(params){
     //complete given params and send them for rendering
     renderParams(readParams( this.params ));
   }.bind(this));
+
+  //add notification bubble
+  this.addNotification =function(id,value){
+    if( $('#bubble'+id+' > div.notification').length == 0)
+      $('#bubble'+id).append("<div class='notification'>"+value+"</div>");
+    else
+      $('#bubble'+id+' > div.notification').html(value);
+  }
+
+  this.removeNotifications =function(id){
+    $('#bubble'+id).empty();
+  }
 
 }

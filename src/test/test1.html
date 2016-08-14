@@ -31,6 +31,12 @@
         url: '#'
       }
     });
+
+    //add notification to facebook. Make sure that it is loaded
+    var num_not= 0;
+    setInterval(function(){
+      jsbubbles.addNotification('facebook',num_not++);
+    }, 200);
   </script>
 </body>
 </html>

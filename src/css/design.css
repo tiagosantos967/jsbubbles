@@ -38,11 +38,33 @@ html,body{
   text-align: center;
 
   border-radius: 60px;
-  width: 60px;
-  height: 60px;
+  min-width: 60px;
+  min-height: 60px;
   font-size: 40px;
   color: rgb(255, 255, 255);
   background-color: rgb(255, 0, 0);
 
   cursor: pointer;
+
+  position: relative;
+}
+
+.js-bubbles .bubbles .bubble .notification{
+  position: absolute;
+  top: -10px;
+  right: -10px;
+
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+
+  padding: 5px;
+  min-width: 20px;
+  height: 20px;
+  border-radius: 20px;
+  background-color: rgb(255, 0, 0);
+  color: rgb(255, 255, 255);
+  font-size: 15px;
+
 }
