@@ -32,7 +32,7 @@
       }
     },{
       start:{
-        name: 'animation-bounce',
+        name: 'animation-enlarge-top',
         time: 1500,
         delay: 100
       },
@@ -46,6 +46,27 @@
     setInterval(function(){
       jsbubbles.addNotification('facebook',num_not++);
     }, 200);
+    setTimeout(function(){
+      jsbubbles.setTooltipText('instagram','hello world instagram');
+      jsbubbles.setTooltipText('facebook','hello world facebook');
+    }, 3000);
+
+    /*
+    setTimeout(function() {
+      jsbubbles.removeBubble('linkedin');
+    },2000);
+
+    setTimeout(function() {
+      jsbubbles.addBubbles({
+        linkedin: 'https://nl.linkedin.com/in/tiago-santos-1b04a5118'
+      } , {
+        start:{
+          name: 'animation-bounce',
+          time: 1500
+        }
+      });
+
+    },3000);*/
   </script>
 </body>
 </html>
