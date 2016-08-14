@@ -4,7 +4,6 @@ function JSBubbles(params, animations){
   this.params = params;
   this.animations= animations;
 
-  //TODO: add linkedin
   var common_params = {
     facebook: {
       color: '#3b5998',
@@ -36,7 +35,7 @@ function JSBubbles(params, animations){
       var toadd = { } ;
       toadd[ String(property) ] = {};
       if(property in common_params){
-        //If supported, the user should only provide the url. Therefore both color and img shoul be added to the literal
+        //If supported, the user can provide only the url. Therefore both color and img shoul be added to the literal
         $.extend( toadd[ String(property) ], common_params[property] );
         $.extend( toadd[ String(property) ], {url: params[property]} );
       } else
@@ -64,23 +63,26 @@ function JSBubbles(params, animations){
 
     var delay = typeof animations.start.delay !== 'undefined'? animations.start.delay : 0;
     var delayed = 0;
-    
+
     for (bubble in params){
       $( ".bubbles" ).append( "<a href='"+params[bubble].url+"'><div id='bubble"+bubble+"' class='bubble "+params[bubble].img+"'></div></a>" );
       $('#bubble'+bubble).css("background-color", params[bubble].color); //font-family: 'FontAwesome'
       $('#bubble'+bubble).css("font-family",'FontAwesome');
 
       //register start animation here
-      startAnimation('#bubble'+bubble,animations.start.name,animations.start.time, delayed+=delay );
+      if(typeof animations.start !== 'undefined')
+        startAnimation('#bubble'+bubble,animations.start.name,animations.start.time, delayed+=delay );
 
       //register hover animation
-      if(~animations.hover.name.indexOf('transition')){
-        startAnimation('#bubble'+bubble,animations.hover.name,-1,0);
-      } else {
-        $('#bubble'+bubble).bind('mouseenter', {bubble: bubble, animations: animations} ,function(event) {
-          var data = event.data;
-          startAnimation('#bubble'+data.bubble,data.animations.hover.name,data.animations.hover.time,0);
-        });
+      if(typeof animations.hover !== 'undefined'){
+        if(~animations.hover.name.indexOf('transition')){
+          startAnimation('#bubble'+bubble,animations.hover.name,-1,0);
+        } else {
+          $('#bubble'+bubble).bind('mouseenter', {bubble: bubble, animations: animations} ,function(event) {
+            var data = event.data;
+            startAnimation('#bubble'+data.bubble,data.animations.hover.name,data.animations.hover.time,0);
+          });
+        }
       }
     }
   };
